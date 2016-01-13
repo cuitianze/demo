@@ -30,7 +30,7 @@ class NotFoundPage extends Component {
     return (
       <div>
         <h1>{title}</h1>
-        <p>Sorry, but the page you were trying to view does not exist.</p>
+        <p>您访问的页面消失在茫茫人海中...</p>
       </div>
     );
   }

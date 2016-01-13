@@ -1,0 +1,48 @@
+@import '../../variables.scss';
+.luckydraw_tit{
+  font-size: 17px;
+  width: 100%;
+  line-height: 50px;
+  text-align: center;
+  color: #feed5b;
+}
+.scratch{
+  width: 90%;
+  margin-left: 5%;
+  position: relative;
+}
+.scratch img{
+  width: 100%;
+}
+.scratch canvas{
+  width: 100%;
+}
+.scratch_top{
+  position: absolute;
+  left: 0;
+  top: 0;
+}
+.luckydraw {
+  padding-bottom: 10px;
+  border-bottom: 1px solid #fef28a;
+}
+.luckydraw_btn{
+  width: 130px;
+  height: 37px;
+  margin: 10px auto;
+}
+.luckydraw_btn button{
+  width: 130px;
+  height: 37px;
+  padding-bottom: 2px;
+  font-size: 18px;
+	margin: 0 auto;
+  font-family:"黑体";
+  color: #ed6046;
+  border: 0;
+  // background: url(/gua/again.png) no-repeat;
+  // background-size: cover;
+  background:#feed5b;
+  border-radius: 5px;
+  box-shadow: 0px 3px 5px #fff inset , 1px 1px 1px rgba(0, 0, 0, 0.5);
+}

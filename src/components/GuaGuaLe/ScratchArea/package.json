@@ -1,0 +1,6 @@
+{
+  "name": "ScratchArea",
+  "version": "0.0.0",
+  "private": true,
+  "main": "./ScratchArea.js"
+}

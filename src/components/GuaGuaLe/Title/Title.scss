@@ -1,0 +1,31 @@
+@import '../../variables.scss';
+.tit{
+  width: 100%;
+  position: relative;
+}
+.tit_pic{
+  width: 100%;
+}
+.countdown{
+  position: absolute;
+  bottom: 10%;
+  left: 50%;
+  margin-left: -105px;
+  color: #ffffff;
+  line-height: 25px;
+}
+.countdown span{
+  float: left;
+}
+.countdown p{
+  float: left;
+  margin-left: 5px;
+  width: 25px;
+  height: 25px;
+  text-align: center;
+  background-color: #ae3727;
+  border-radius: 50%;
+}
+.semicolon{
+  color: #0f809d;
+}

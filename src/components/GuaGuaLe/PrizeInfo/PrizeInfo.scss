@@ -1,0 +1,44 @@
+@import '../../variables.scss';
+.prizeTitle{
+  width:36%;
+  margin:0 auto;
+  margin-bottom: 10px;
+  img{
+    width:100%;
+  }
+}
+.prizecontent{
+  width:100%;
+  border-radius: 5px;
+  background:#5eca64;
+  padding:10px 6px;
+  margin-bottom:19px;
+  ul{
+    width:100%;
+    li{
+      display:-webkit-box;
+      &:nth-child(1){
+        margin-bottom: 7px;
+      }
+      >div{
+        -webkit-box-flex:1;
+        border:2px solid #ffc511;
+        border-radius: 2px;
+        margin-right: 4px;
+        background: radial-gradient(#fefbd9, #feed5e);
+        padding:5px 0;
+        text-align: center;
+        img{
+          width:30%;
+        }
+        p{
+          font-size: 12px;
+
+        }
+        &:last-child{
+          margin:0;
+        }
+      }
+    }
+  }
+}
