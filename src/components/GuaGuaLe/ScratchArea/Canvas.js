@@ -49,25 +49,20 @@ class Canvas extends Component {
     canvas.height = canvas.offsetHeight;
 
     let ctx = canvas.getContext('2d'); // 访问绘画上下文
-    ctx.globalCompositeOperation = 'destination-out'; // canvas设置全局绘制方式
 
     this.setState({
       canvas: canvas,
       context: ctx
     });
 
-
-    // var isDown = false; // 按下状态
-    // var radius = 15; // 定义半径
-    // var pi2 = Math.PI * 2; // 定义绘制圆终点
-    // var img = new Image; // 声明图片
-    // img.onload = start; // 图片加载完执行绘制遮罩图片函数
-    // img.src = 'http://pic.baike.soso.com/p/20090711/bki-20090711100310-2024468547.jpg';
-    // // 绘制遮罩图片函数
-    // function start() {
-    //   ctx.drawImage(this, 0, 0, canvas.width, canvas.height); // 绘制遮罩图片
-    //   ctx.globalCompositeOperation = 'destination-out'; // canvas设置全局绘制方式
-    // }
+    var img = new Image; // 声明图片
+    img.onload = start; // 图片加载完执行绘制遮罩图片函数
+    img.src = '/gua/scratch-top.png';
+    // 绘制遮罩图片函数
+    function start() {
+      ctx.drawImage(this, 0, 0, canvas.width, canvas.height); // 绘制遮罩图片
+      ctx.globalCompositeOperation = 'destination-out'; // canvas设置全局绘制方式
+    }
   }
 
   handleOnMouseDown(e) {
@@ -138,9 +133,21 @@ class Canvas extends Component {
   //   ctx.fill(); // 通过填充路径的内容区域生成实心的图形。
   // }
 
+  getDefultStyle() {
+    return {
+      backgroundImage: 'url(/gua/scratch-bottom.png)',
+      backgroundSize: '100% 100%'
+    }
+  }
+  canvasStyle() {
+    let defaults = this.getDefultStyle();
+    // let custom = this.props.canvasStyle;
+    return Object.assign({}, defaults);
+  }
+
   render() {
     return (
-      <canvas onTouchStart={this.handleOnMouseDown} onTouchMove={this.handleOnMouseMove}></canvas>
+      <canvas style={this.canvasStyle()} onTouchStart={this.handleOnMouseDown} onTouchMove={this.handleOnMouseMove}></canvas>
     )
   }
 }
