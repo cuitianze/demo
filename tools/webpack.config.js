@@ -61,6 +61,9 @@ const config = {
 
   resolve: {
     extensions: ['', '.webpack.js', '.web.js', '.js', '.jsx', '.json'],
+    alias: {
+      'react-canvas': 'node_modules/react-canvas'
+    }
   },
 
   module: {

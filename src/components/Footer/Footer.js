@@ -10,7 +10,6 @@
 import React, { Component } from 'react';
 import s from './Footer.scss';
 import withStyles from '../../decorators/withStyles';
-import Link from '../Link';
 
 @withStyles(s)
 class Footer extends Component {
