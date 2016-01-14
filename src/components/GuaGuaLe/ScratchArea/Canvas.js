@@ -7,7 +7,7 @@ class Canvas extends Component {
 
   static propTypes = {
     brushColor: PropTypes.string,
-    lineWidth: PropTypes.number,
+    // lineWidth: PropTypes.number,
     canvasStyle: PropTypes.shape({
       backgroundColor: PropTypes.string,
       cursor: PropTypes.string
@@ -16,8 +16,8 @@ class Canvas extends Component {
   };
 
   static defaultProps = {
-    brushColor: '#000000',
-    lineWidth: 20,
+    brushColor: '#fff',
+    // lineWidth: 20,
     canvasStyle: {
       backgroundColor: '#FFFFFF',
       cursor: 'pointer'
@@ -29,8 +29,8 @@ class Canvas extends Component {
     canvas: null,
     context: null,
     drawing: false,
-    lastX: 0,
-    lastY: 0
+    X: 0,
+    Y: 0
   }
 
   constructor(props) {
@@ -38,6 +38,9 @@ class Canvas extends Component {
     this.handleOnMouseDown = this.handleOnMouseDown.bind(this);
     this.handleOnMouseMove = this.handleOnMouseMove.bind(this);
     this.draw = this.draw.bind(this);
+    this.drawScratchImage = this.drawScratchImage.bind(this);
+    this.resetCanvas = this.resetCanvas.bind(this);
+    this.getCircleCenter = this.getCircleCenter.bind(this);
   }
 
   componentDidMount() {
@@ -45,8 +48,11 @@ class Canvas extends Component {
 
     canvas.style.width = '100%';
     canvas.style.height = '100%';
+    console.log(canvas.offsetWidth);
+    console.log(canvas.offsetHeight);
     canvas.width = canvas.offsetWidth;
     canvas.height = canvas.offsetHeight;
+    console.log(canvas.height);
 
     let ctx = canvas.getContext('2d'); // 访问绘画上下文
 
@@ -54,100 +60,94 @@ class Canvas extends Component {
       canvas: canvas,
       context: ctx
     });
+    this.drawScratchImage();
+  }
 
-    var img = new Image; // 声明图片
-    img.onload = start; // 图片加载完执行绘制遮罩图片函数
-    img.src = '/gua/scratch-top.png';
-    // 绘制遮罩图片函数
-    function start() {
-      ctx.drawImage(this, 0, 0, canvas.width, canvas.height); // 绘制遮罩图片
-      ctx.globalCompositeOperation = 'destination-out'; // canvas设置全局绘制方式
+  componentWillReceiveProps(nextProps) {
+    if(nextProps.clear) {
+      this.resetCanvas();
     }
   }
 
-  handleOnMouseDown(e) {
-    console.log(this);
+  drawScratchImage() {
+    var img = new Image; // 声明图片
+    img.onload = start; // 图片加载完执行绘制遮罩图片函数
+    img.src = '/gua/scratch-area.png';
+    // 绘制遮罩图片函数
+    let self = this;
+    function start() {
+      self.state.context.globalCompositeOperation = 'copy'; // canvas设置全局绘制方式
+      self.state.context.drawImage(this, 0, 0, self.state.canvas.width, self.state.canvas.height); // 绘制遮罩图片
+      self.state.context.globalCompositeOperation = 'destination-out'; // canvas设置全局绘制方式
+    }
+  }
+
+  getCircleCenter(e) {
     let rect = this.state.canvas.getBoundingClientRect();
-    this.state.context.beginPath();
     this.setState({
-      lastX: e.targetTouches[0].pageX - rect.left,
-      lastY: e.targetTouches[0].pageY - rect.top,
+      X: e.targetTouches[0].pageX - rect.left,
+      Y: e.targetTouches[0].pageY - rect.top
+    });
+  }
+
+  handleOnMouseDown(e) {
+    this.setState({
       drawing: true
     });
+    this.getCircleCenter(e);
+    this.draw(this.state.X, this.state.Y);
   }
 
   handleOnMouseMove(e) {
     e.preventDefault();
     if(this.state.drawing) {
-      let rect = this.state.canvas.getBoundingClientRect();
-      let lastX = this.state.lastX;
-      let lastY = this.state.lastY;
-      let currentX;
-      let currentY;
-      currentX = e.targetTouches[0].pageX - rect.left;
-      currentY = e.targetTouches[0].pageY - rect.top;
-      this.draw(lastX, lastY, currentX, currentY);
-      this.setState({
-        lastX: currentX,
-        lastY: currentY
-      })
+      this.getCircleCenter(e);
+      this.draw(this.state.X, this.state.Y);
     }
   }
 
-  draw(lX, lY, cX, cY) {
-    this.state.context.strokeStyle = this.props.brushColor;
-    this.state.context.lineWidth = this.props.lineWidth;
-    this.state.context.moveTo(lX,lY);
-    this.state.context.lineTo(cX,cY);
-    this.state.context.stroke();
+  handleOnMouseUp(e) {
+    this.setState({
+      drawing: false
+    })
   }
-  // 获取圆心
-  // getXY(e) {
-  //   var rect = canvas.getBoundingClientRect();
-  //   return {
-  //     x: e.clientX - rect.left,
-  //     y: e.clientY - rect.top
-  //   }
-  // }
-  // // 处理鼠标按下
-  // handleTouchStart(e) {
-  //   // this.isDown = true;
-  //   console.log(this);
-  //   var pos = this.getXY(e);
-  //   this.erase(pos.x, pos.y);
-  // }
-  // // 处理鼠标移动
-  // handleTouchMove(e) {
-  //   if(!isDown) return;
-  //   var pos = getXY(e);
-  //   erase(pos.x, pos.y);
-  // }
-  // // 处理鼠标抬起
-  // handleTouchEnd(e) {
-  //   isDown = false;
-  // }
-  // // 绘制圆形(即"橡皮擦")
-  // erase(x, y) {
-  //   ctx.beginPath(); // 新建一条路径，生成之后，图形绘制命令被指向到路径上生成路径。
-  //   ctx.arc(x, y, radius, 0, pi2); // 画一个以（x,y）为圆心的以radius为半径的圆弧（圆），从0开始到2*PI*R结束
-  //   ctx.fill(); // 通过填充路径的内容区域生成实心的图形。
-  // }
+
+  draw(X, Y) {
+    this.state.context.beginPath();
+    this.state.context.arc(X, Y, 15, 0, Math.PI*2);
+    this.state.context.fill();
+  }
+
+  resetCanvas() {
+    console.log('lalala');
+    let width = this.state.context.canvas.width;
+    let height = this.state.context.canvas.height;
+    this.drawScratchImage();
+  }
 
   getDefultStyle() {
-    return {
-      backgroundImage: 'url(/gua/scratch-bottom.png)',
-      backgroundSize: '100% 100%'
-    }
+    // return {
+    //   backgroundImage: 'url(/gua/scratch-bottom.png)',
+    //   backgroundSize: '100% 100%'
+    // }
   }
+
   canvasStyle() {
     let defaults = this.getDefultStyle();
-    // let custom = this.props.canvasStyle;
+    let custom = this.props.canvasStyle;
     return Object.assign({}, defaults);
   }
 
   render() {
     return (
-      <canvas style={this.canvasStyle()} onTouchStart={this.handleOnMouseDown} onTouchMove={this.handleOnMouseMove}></canvas>
+      <canvas style = {this.canvasStyle()}
+        onMouseDown = {this.handleOnMouseDown}
+        onTouchStart = {this.handleOnMouseDown}
+        onMouseMove = {this.handleOnMouseMove}
+        onTouchMove = {this.handleOnMouseMove}
+        onMouseUp = {this.handleonMouseUp}
+        onTouchEnd = {this.handleonMouseUp}
+      ></canvas>
     )
   }
 }

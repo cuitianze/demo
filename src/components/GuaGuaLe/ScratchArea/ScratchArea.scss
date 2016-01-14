@@ -1,48 +1,83 @@
 @import '../../variables.scss';
-.luckydraw_tit{
+.hidden {
+  display: none;
+}
+.luckydraw_tit {
   font-size: 17px;
   width: 100%;
   line-height: 50px;
   text-align: center;
   color: #feed5b;
 }
-.scratch{
+.scratch {
   width: 90%;
+  height: 218.41755319148936px;
   margin-left: 5%;
   position: relative;
 }
-.scratch img{
+.scratch img {
   width: 100%;
 }
-.scratch canvas{
+.scratch canvas {
   width: 100%;
 }
-.scratch_top{
+.real_prize {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: -9;
+  background: url(/gua/scratch-bottom.png) no-repeat;
+  background-size: 100% 100%;
+}
+.scratch_top {
   position: absolute;
   left: 0;
   top: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 9;
+  line-height: 100%;
+  text-align: center;
+  background: url(/gua/scratch-top.png) no-repeat;
+  background-size: 100% 100%;
+}
+.joinBtn {
+  margin-top: 26%;
+  padding: 10px;
+  font-size: 18px;
+  line-height: 20px;
+  color: #feed5b;
+  border: 0;
+  background:#db462b;
+  border-radius: 5px;
+  box-shadow: 0px 3px 5px #fff inset , 1px 1px 1px rgba(169, 155, 155, 0.5);
+  &:active {
+    background-color: #E46149;
+  }
 }
 .luckydraw {
   padding-bottom: 10px;
   border-bottom: 1px solid #fef28a;
 }
-.luckydraw_btn{
+.luckydraw_btn {
   width: 130px;
   height: 37px;
   margin: 10px auto;
 }
-.luckydraw_btn button{
+.luckydraw_btn button {
   width: 130px;
   height: 37px;
   padding-bottom: 2px;
   font-size: 18px;
 	margin: 0 auto;
-  font-family:"黑体";
   color: #ed6046;
   border: 0;
-  // background: url(/gua/again.png) no-repeat;
-  // background-size: cover;
   background:#feed5b;
   border-radius: 5px;
-  box-shadow: 0px 3px 5px #fff inset , 1px 1px 1px rgba(0, 0, 0, 0.5);
+  box-shadow: 0px 3px 5px #fff inset , 1px 1px 1px rgba(169, 155, 155, 0.5);
+  &:active {
+    background-color: #F1DF44;
+  }
 }

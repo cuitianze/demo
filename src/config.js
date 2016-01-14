@@ -7,6 +7,6 @@
  * LICENSE.txt file in the root directory of this source tree.
  */
 
-export const port = process.env.PORT || 6000;
+export const port = process.env.PORT || 7000;
 export const host = process.env.WEBSITE_HOSTNAME || `localhost:${port}`;
 export const googleAnalyticsId = 'UA-XXXXX-X';
