@@ -7,7 +7,7 @@ import withStyles from '../../../decorators/withStyles';
 class PrizeInfo extends Component {
 
   state = {
-    prizeInfo: this.props.prizeInfo
+    // prizeInfo: this.props.prizeInfo
   }
 
   constructor(props) {
@@ -28,11 +28,11 @@ class PrizeInfo extends Component {
         numsPerPage: 4
       })
     });
-    const data = await response.json();
-    console.log(data.data, 'data')
-    this.setState({
-      prizeInfo: data.data
-    });
+    // const data = await response.json();
+    // console.log(data.data, 'data')
+    // this.setState({
+    //   prizeInfo: data.data
+    // });
   }
 
   render() {

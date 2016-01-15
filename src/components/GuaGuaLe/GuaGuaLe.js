@@ -45,9 +45,10 @@ class GuaGuaLe extends Component {
   }
 
   loginApp() {
-    if(ios) {
-      window.localtion.href = "js://_?".concat(JSON.stringify({type: "login"}));
-    }
+    // if(ios) {
+      console.log('click login');
+      window.location.href = "js://_?".concat(JSON.stringify({type: "login"}));
+    // }
   }
 
   render() {
@@ -57,7 +58,7 @@ class GuaGuaLe extends Component {
         <ScratchArea/>
         <button onClick={this.loginApp}>LOGIN</button>
         <div className={s.prizeWrap}>
-          <PrizeInfo prizeInfo={this.props.content}/>
+          <PrizeInfo/>
           <UserPrize/>
           <ActivityRule/>
         </div>
