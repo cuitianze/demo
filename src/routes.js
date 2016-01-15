@@ -23,8 +23,12 @@ const router = new Router(on => {
   });
 
   on('/gua/:id', async (state) => {
-    console.log(state.params.id);
-    return <GuaGuaLe />
+    console.log(state, 'params');
+    const response = await fetch('http://api.lib.wn518.com/blogs/list', {method: 'post'});
+    const content = await response.json();
+    const  data = content.data;
+    console.log(data);
+    return <GuaGuaLe content={data}/>
   });
 
   on('error', (state, error) => state.statusCode === 404 ?

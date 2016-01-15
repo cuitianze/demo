@@ -19,9 +19,15 @@ import UserPrize from './UserPrize';
 import ActivityRule from './ActivityRule';
 
 const title = '刮奖';
+var ios;
 
 @withStyles(s)
 class GuaGuaLe extends Component {
+
+  constructor(props) {
+    super(props);
+    this.loginApp = this.loginApp.bind(this);
+  }
 
   // static contextTypes = {
   //   onSetTitle: PropTypes.func.isRequired,
@@ -38,13 +44,20 @@ class GuaGuaLe extends Component {
     console.log(r);
   }
 
+  loginApp() {
+    if(ios) {
+      window.localtion.href = "js://_?".concat(JSON.stringify({type: "login"}));
+    }
+  }
+
   render() {
     return (
       <div>
         <Title/>
         <ScratchArea/>
+        <button onClick={this.loginApp}>LOGIN</button>
         <div className={s.prizeWrap}>
-          <PrizeInfo/>
+          <PrizeInfo prizeInfo={this.props.content}/>
           <UserPrize/>
           <ActivityRule/>
         </div>
