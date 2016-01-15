@@ -24,10 +24,9 @@ var ios;
 @withStyles(s)
 class GuaGuaLe extends Component {
 
-  constructor(props) {
-    super(props);
-    this.loginApp = this.loginApp.bind(this);
-  }
+  // constructor(props) {
+  //   super(props);
+  // }
 
   // static contextTypes = {
   //   onSetTitle: PropTypes.func.isRequired,
@@ -44,12 +43,6 @@ class GuaGuaLe extends Component {
     console.log(r);
   }
 
-  loginApp() {
-    // if(ios) {
-      console.log('click login');
-      window.location.href = "js://_?".concat(JSON.stringify({type: "login"}));
-    // }
-  }
 
   render() {
     return (

@@ -15,6 +15,7 @@ class ScratchArea extends Component {
     super(props);
     this.handleOnClickClear = this.handleOnClickClear.bind(this);
     this.handleOnScratchPrize = this.handleOnScratchPrize.bind(this);
+    this.loginApp = this.loginApp.bind(this);
   }
 
   handleOnClickClear() {
@@ -30,6 +31,14 @@ class ScratchArea extends Component {
     })
   }
 
+  loginApp() {
+    // if(ios) {
+      console.log('click login');
+      window.location.href = "js://_?".concat(JSON.stringify({type: "login"}));
+    // }
+  }
+
+
   render() {
     return (
       <div className={s.luckydraw}>
@@ -43,7 +52,9 @@ class ScratchArea extends Component {
             <p style={{textAlign: 'center'}}>奖品神马都是骗人的!</p>
           </div>
           <div className={!this.state.scratch ? s.scratch_top : s.hidden}>
-            <button onClick={this.handleOnScratchPrize} className={s.joinBtn}>消耗10300积分,参与刮奖</button>
+            <button onClick={this.loginApp} className={!this.props._isLogin ? s.joinBtn : s.hidden}>点击登陆,参与刮奖</button>
+            <button onClick={this.handleOnScratchPrize} className={this.props._isLogin ? s.joinBtn : s.hidden}>消耗300积分,参与刮奖</button>
+            <div className={s.scratchTimes}><span>您已参与2次</span></div>
           </div>
         </div>
         <div className={s.luckydraw_btn}>

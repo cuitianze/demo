@@ -37,44 +37,34 @@ class PrizeInfo extends Component {
 
   render() {
     var prizes = [1,2,3,4,5,6,7,8];
-    var newPrizeLi = [];
-    for (var i = 0; i < prizes.length; i+=3) {
-      newPrizeLi.push(prizes.slice(i, i+3));
-    };
-    for(var i = 0; i < newPrizeLi.length; i++) {
-      var newRow = true;
-      for(let a = 0; a < (3 - newPrizeLi[i].length % 3); a++ ) {
-        if(newRow && newPrizeLi[i].length < 3) {
-         newPrizeLi[i].push(1);          
-        }
-        newRow = false;
-      }      
-    }
-    console.log(newPrizeLi, 'newArr');
+    // var newPrizeLi = [];
+    // for (var i = 0; i < prizes.length; i+=3) {
+    //   newPrizeLi.push(prizes.slice(i, i+3));
+    // };
+    // for(var i = 0; i < newPrizeLi.length; i++) {
+    //   var newRow = true;
+    //   for(let a = 0; a < (3 - newPrizeLi[i].length % 3); a++ ) {
+    //     if(newRow && newPrizeLi[i].length < 3) {
+    //      newPrizeLi[i].push(1);          
+    //     }
+    //     newRow = false;
+    //   }      
+    // }
+    // console.log(newPrizeLi, 'newArr');
     return (
       <div>
         <div className={s.prizeTitle}>
           <img src="/gua/prize.png"/>
         </div>
         <div className={s.prizecontent}>
-          <ul>
-            {newPrizeLi.map( (item, index)=> {
-              return (
-               <li key={index}>
-                {item.map( (xitem, index)=> {
-                  return (
-                    <div key={index}>
-                      <img src="/gua/iphone.png"/>
-                      <p>iPhone 6S 16G 1部</p>
-                    </div>
-                  )
-                })}
-              </li>      
-              )
-            })}
-
-          </ul>
-          <button onClick={this.handleOnChangeData}>click</button>
+                {prizes.map( (item, index)=> {
+                return (
+                  <div key={index}>
+                    <img src="/gua/iphone.png"/>
+                    <p>iPhone 6S 16G 1部</p>
+                  </div>
+                )
+              })}
         </div>
       </div>
     );

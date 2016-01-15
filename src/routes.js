@@ -24,7 +24,19 @@ const router = new Router(on => {
 
   on('/gua/:id', async (state) => {
     console.log(state, 'params');
-    // const response = await fetch('http://api.lib.wn518.com/blogs/list', {method: 'post'});
+    const id = { 
+      id: state.params.id
+    };
+    const objId = {
+      param: JSON.stringify(id)
+    };
+    var paramId = Object.keys(objId).map(function(key) {
+        return key + '=' + objId[key];
+    }).join('&');
+    // const response = await fetch("http://192.168.1.106:2692/award_activity.wn", {
+    //   method: 'post',
+    //   body: paramId
+    // });
     // const content = await response.json();
     // const  data = content.data;
     // console.log(data);
