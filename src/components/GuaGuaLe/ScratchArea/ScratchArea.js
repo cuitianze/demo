@@ -53,7 +53,7 @@ class ScratchArea extends Component {
           </div>
           <div className={!this.state.scratch ? s.scratch_top : s.hidden}>
           {
-            this.props._isLogin ?
+            this.props.isLogin ?
             <button onClick={this.handleOnScratchPrize} className={s.joinBtn}>消耗300积分,参与刮奖</button> :
             <button onClick={this.loginApp} className={s.joinBtn}>点击登陆,参与刮奖</button>
           }

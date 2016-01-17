@@ -47,7 +47,7 @@ class GuaGuaLe extends Component {
     return (
       <div>
         <Title/>
-        <ScratchArea/>
+        <ScratchArea {...this.props}/>
         <div className={s.prizeWrap}>
           <PrizeInfo/>
           <UserPrize/>

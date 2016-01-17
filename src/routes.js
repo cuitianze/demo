@@ -24,7 +24,8 @@ const router = new Router(on => {
 
   on('/gua/:id', async (state) => {
     console.log(state, 'params');
-    const id = { 
+    const token = state.query.token;
+    const id = {
       id: state.params.id
     };
     const objId = {
@@ -40,7 +41,7 @@ const router = new Router(on => {
     // const content = await response.json();
     // const  data = content.data;
     // console.log(data);
-    return <GuaGuaLe />
+    return <GuaGuaLe isLogin={token}/>
   });
 
   on('error', (state, error) => state.statusCode === 404 ?
