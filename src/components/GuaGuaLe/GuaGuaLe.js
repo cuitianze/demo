@@ -19,7 +19,6 @@ import UserPrize from './UserPrize';
 import ActivityRule from './ActivityRule';
 
 const title = '刮奖';
-var ios;
 
 @withStyles(s)
 class GuaGuaLe extends Component {
@@ -49,7 +48,6 @@ class GuaGuaLe extends Component {
       <div>
         <Title/>
         <ScratchArea/>
-        <button onClick={this.loginApp}>LOGIN</button>
         <div className={s.prizeWrap}>
           <PrizeInfo/>
           <UserPrize/>

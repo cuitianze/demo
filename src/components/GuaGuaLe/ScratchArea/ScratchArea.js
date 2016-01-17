@@ -52,8 +52,11 @@ class ScratchArea extends Component {
             <p style={{textAlign: 'center'}}>奖品神马都是骗人的!</p>
           </div>
           <div className={!this.state.scratch ? s.scratch_top : s.hidden}>
-            <button onClick={this.loginApp} className={!this.props._isLogin ? s.joinBtn : s.hidden}>点击登陆,参与刮奖</button>
-            <button onClick={this.handleOnScratchPrize} className={this.props._isLogin ? s.joinBtn : s.hidden}>消耗300积分,参与刮奖</button>
+          {
+            this.props._isLogin ?
+            <button onClick={this.handleOnScratchPrize} className={s.joinBtn}>消耗300积分,参与刮奖</button> :
+            <button onClick={this.loginApp} className={s.joinBtn}>点击登陆,参与刮奖</button>
+          }
             <div className={s.scratchTimes}><span>您已参与2次</span></div>
           </div>
         </div>
