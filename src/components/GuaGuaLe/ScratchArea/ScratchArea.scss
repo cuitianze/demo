@@ -2,13 +2,7 @@
 .hidden {
   display: none;
 }
-.luckydraw_tit {
-  font-size: 17px;
-  width: 100%;
-  line-height: 50px;
-  text-align: center;
-  color: #feed5b;
-}
+
 .scratch {
   width: 90%;
   height: 218.41755319148936px;
@@ -66,6 +60,7 @@
 
 
 .luckydraw {
+  padding-top: 10px;
   padding-bottom: 10px;
   border-bottom: 1px solid #fef28a;
 }

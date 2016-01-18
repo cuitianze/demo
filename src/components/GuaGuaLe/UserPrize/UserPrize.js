@@ -63,7 +63,7 @@ class UserPrize extends Component {
     var num = 0;
     this.getPrizeInfos(num);
     setInterval(()=> {
-      console.log(this.state.prizeInfos);
+      // console.log(this.state.prizeInfos);
       if(num >= prizeInfo.length) {
         num = 0;
       }

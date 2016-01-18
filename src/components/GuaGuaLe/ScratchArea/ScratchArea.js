@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
+import fetch from '../../../core/fetch';
 import s from './ScratchArea.scss';
 import withStyles from '../../../decorators/withStyles';
 import Canvas from './Canvas';
@@ -18,6 +19,7 @@ class ScratchArea extends Component {
     this.loginApp = this.loginApp.bind(this);
   }
 
+  // 再刮一次
   handleOnClickClear() {
     this.setState({
       clear: true,
@@ -25,30 +27,31 @@ class ScratchArea extends Component {
     });
   }
 
-  handleOnScratchPrize() {
+  async handleOnScratchPrize() {
     this.setState({
       scratch: true
     })
+    const response = await fetch( this.props.remoteApiUrl + this.props.url + '?param=' + JSON.stringify({id: this.props.activityId}), {
+      headers: {
+        'token': 'iwTOX7V4qJbScvciDlBIpj+0eIhvGb+VlXCXoQHFhsktdM1OPwYCam+ttS5J/8+3'
+      }
+    });
+    console.log(response)
   }
 
+  // 调用APP登陆
   loginApp() {
-    // if(ios) {
-      console.log('click login');
-      window.location.href = "js://_?".concat(JSON.stringify({type: "login"}));
-    // }
+    console.log('click login');
+    window.location.href = "js://_?".concat(JSON.stringify({type: "login"}));
   }
 
 
   render() {
     return (
       <div className={s.luckydraw}>
-        <p className={s.luckydraw_tit}>您已参与2次，本次将消耗300积分</p>
         <div className={s.scratch}>
           <Canvas {...this.state}/>
           <div className={s.real_prize}>
-            {/*}
-            <img src="/gua/scratch-bottom.png" />
-            */}
             <p style={{textAlign: 'center'}}>奖品神马都是骗人的!</p>
           </div>
           <div className={!this.state.scratch ? s.scratch_top : s.hidden}>

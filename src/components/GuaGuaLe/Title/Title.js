@@ -2,8 +2,6 @@ import React, { Component } from 'react';
 import s from './Title.scss';
 import withStyles from '../../../decorators/withStyles';
 
-const endTime = new Date("2016-01-19");
-
 @withStyles(s)
 class Title extends Component {
 
@@ -19,8 +17,13 @@ class Title extends Component {
     seconds: 0
   }
 
+  // 计算倒计时
   getRemainTime() {
-    const currentTime = new Date();
+      // 当前时间
+      const currentTime = Date.now();
+      // 服务端活动截止时间
+      const endTime = this.props.data.end_time ? this.props.data.end_time : Date.now();
+      // 倒计时
       const remainTime = endTime - currentTime;
       // Days
       const remainDays = Math.floor(remainTime/(1000*60*60*24));
@@ -28,7 +31,7 @@ class Title extends Component {
       const remainS1 = remainTime%(1000*60*60*24);
       let remainHours = Math.floor(remainS1/(1000*60*60));
       if( remainHours.toString().length < 2 ) remainHours = '0' + remainHours;
-      // Minutes 
+      // Minutes
       const remainS2 = remainS1%(1000*60*60);
       let remainMinutes = Math.floor(remainS2/(1000*60));
       if( remainMinutes.toString().length < 2 ) remainMinutes = '0' + remainMinutes;
@@ -43,6 +46,7 @@ class Title extends Component {
         minutes: remainMinutes,
         seconds: remainSeconds
       });
+
       setTimeout(()=> {
         this.getRemainTime()
       }, 1000)
@@ -55,7 +59,7 @@ class Title extends Component {
   render() {
     return (
       <div className={s.tit}>
-       <img src="/gua/title.png" alt="积分刮刮乐" className={s.tit_pic}/>
+       <img src={this.props.data.img_title ? this.props.data.img_title : "/gua/title.png"} alt="积分刮刮乐" className={s.tit_pic}/>
        <div className={s.countdown}>
          <span>刮奖活动倒计时</span>
          <p>{this.state.days}</p>
