@@ -56,6 +56,7 @@ class GuaGuaLe extends Component {
   render() {
     return (
       <div>
+      <div style={this.state.activityData ? {display: 'none'} : {}}>Loading </div>
       {
         this.state.notFound ?
         <div style={{textAlign: 'center'}}> { this.state.message } </div> :
