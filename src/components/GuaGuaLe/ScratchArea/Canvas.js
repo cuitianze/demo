@@ -48,11 +48,8 @@ class Canvas extends Component {
 
     canvas.style.width = '100%';
     canvas.style.height = '100%';
-    console.log(canvas.offsetWidth);
-    console.log(canvas.offsetHeight);
     canvas.width = canvas.offsetWidth;
     canvas.height = canvas.offsetHeight;
-    console.log(canvas.height);
 
     let ctx = canvas.getContext('2d'); // 访问绘画上下文
 
@@ -109,17 +106,18 @@ class Canvas extends Component {
   handleOnMouseUp(e) {
     this.setState({
       drawing: false
-    })
+    });
   }
 
   draw(X, Y) {
-    this.state.context.beginPath();
-    this.state.context.arc(X, Y, 15, 0, Math.PI*2);
-    this.state.context.fill();
+    setTimeout( ()=> {
+      this.state.context.beginPath();
+      this.state.context.arc(X, Y, 25, 0, Math.PI*2);
+      this.state.context.fill();
+    }, 10)
   }
 
   resetCanvas() {
-    console.log('lalala');
     let width = this.state.context.canvas.width;
     let height = this.state.context.canvas.height;
     this.drawScratchImage();

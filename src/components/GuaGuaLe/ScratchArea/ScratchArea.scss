@@ -9,11 +9,9 @@
   margin-left: 5%;
   position: relative;
 }
-.scratch img {
+.scratchCanvas {
   width: 100%;
-}
-.scratch canvas {
-  width: 100%;
+  height: 218.41755319148936px;
 }
 .real_prize {
   position: absolute;
@@ -57,24 +55,24 @@
   font-size: 18px;
 }
 
-
-
 .luckydraw {
   padding-top: 10px;
   padding-bottom: 10px;
   border-bottom: 1px solid #fef28a;
 }
 .luckydraw_btn {
+  position: absolute;
+  bottom: 5%;
+  left: 50%;
   width: 130px;
   height: 37px;
-  margin: 10px auto;
+  margin-left: -65px;
 }
 .luckydraw_btn button {
   width: 130px;
   height: 37px;
   padding-bottom: 2px;
   font-size: 18px;
-  margin: 0 auto;
   color: #ed6046;
   border: 0;
   background:#feed5b;

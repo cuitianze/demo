@@ -17,7 +17,7 @@ const router = new Router(on => {
   on('/gua/:id', (state) => {
     const token = state.query.token; // 客户端传回的token
     const id = state.params.id; // 抽奖活动id
-    return <GuaGuaLe isLogin={token} activityId={id} />
+    return <GuaGuaLe userToken={token} activityId={id} />
   });
 
   on('error', (state, error) => state.statusCode === 404 ?

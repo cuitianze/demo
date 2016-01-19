@@ -7,9 +7,17 @@ let test_rule = "1.本次活动最终解释权归微农所有\r<br/>2.所有规�
 
 class ActivityRule extends Component {
 
-  componentDidMount() {
-    console.log(this.props.data.text_rule)
+  state = {
+    rules: this.props.data.text_rule || []
+  }
 
+  componentDidMount() {
+    setTimeout( ()=> {
+      this.setState({
+        rules: this.props.data.text_rule
+      });
+      console.log(this.state.rules)
+    }, 1000)
   }
 
 
@@ -33,6 +41,7 @@ class ActivityRule extends Component {
   			<p>本次活动最终解释权归北京微农网络技术有限公司所有</p>
   		</div>
     )
+    
   }
 }
 

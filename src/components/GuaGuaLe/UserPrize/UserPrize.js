@@ -7,7 +7,7 @@ import withStyles from '../../../decorators/withStyles';
 class UserPrize extends Component {
 
   state = {
-    prizeInfos: this.props.data.winResponseList || []
+    prizeInfos: []
   }
 
   constructor(props) {
@@ -19,7 +19,7 @@ class UserPrize extends Component {
     if( !this.props.data ) return;
     this.setState({
       prizeInfos: this.props.data.winResponseList.slice(num, num+2)
-    })
+    });
   }
 
   componentDidMount() {
@@ -28,7 +28,8 @@ class UserPrize extends Component {
       this.getPrizeInfos(num);
     }, 100);
     setInterval( ()=> {
-      if(num >= this.state.prizeInfos.length) {
+      console.log(num);
+      if(num >= this.props.data.winResponseList.length) {
         num = 0;
       }
       this.getPrizeInfos(num);
@@ -46,7 +47,7 @@ class UserPrize extends Component {
   				<ul>
             {this.state.prizeInfos.map((prize, index) => {
               return (
-      					<li key={prize.phone}><span>{prize.phone}</span><span>{prize.award_name}</span></li>
+      					<li key={prize.record_id}><span>{prize.phone}</span><span>{prize.award_name}</span></li>
               )
             })}
   				</ul>

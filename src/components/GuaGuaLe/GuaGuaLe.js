@@ -24,7 +24,7 @@ class GuaGuaLe extends Component {
   // 从上级会得到 {isLogin: token} {activityId: id}
   state = {
     activityData: '',
-    isLogin: this.props.isLogin,
+    userToken: this.props.userToken,
     activityId: this.props.activityId,
     notFound: false
   }
@@ -61,7 +61,7 @@ class GuaGuaLe extends Component {
         <div style={{textAlign: 'center'}}> { this.state.message } </div> :
         <div>
           <Title data={this.state.activityData}/>
-          <ScratchArea data={this.state.activityData} remoteApiUrl={remoteApiUrl} url={"/draw_award.wn"} isLogin={this.state.isLogin} activityId={this.state.activityId}/>
+          <ScratchArea data={this.state.activityData} remoteApiUrl={remoteApiUrl} url={"/draw_award.wn"} userToken={this.state.userToken} activityId={this.state.activityId}/>
           <div className={s.prizeWrap}>
             <PrizeInfo data={this.state.activityData}/>
             <UserPrize data={this.state.activityData}/>
