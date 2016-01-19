@@ -19,6 +19,10 @@ class ScratchArea extends Component {
     this.loginApp = this.loginApp.bind(this);
   }
 
+  scrollToTop() {
+    window.scroll(0, 0);
+  }
+
   // 再刮一次
   handleOnClickClear() {
     this.setState({
@@ -49,7 +53,7 @@ class ScratchArea extends Component {
   render() {
     return (
       <div className={s.luckydraw}>
-        <div className={s.scratch}>
+        <div className={s.scratch} onTouchStart={this.scrollToTop}>
           <Canvas {...this.state}/>
           <div className={s.real_prize}>
             <p style={{textAlign: 'center'}}>奖品神马都是骗人的!</p>

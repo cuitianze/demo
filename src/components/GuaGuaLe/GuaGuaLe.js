@@ -23,7 +23,10 @@ class GuaGuaLe extends Component {
 
   // 从上级会得到 {isLogin: token} {activityId: id}
   state = {
-    activityData: ''
+    activityData: '',
+    isLogin: this.props.isLogin,
+    activityId: this.props.activityId,
+    notFound: false
   }
 
   constructor(props) {
@@ -35,6 +38,12 @@ class GuaGuaLe extends Component {
   async getAwardActivity() {
     const response = await fetch( remoteApiUrl + activityApi + '?param=' + JSON.stringify({id: this.props.activityId}) );
     const responseData = await response.json();
+    if( responseData.code == 0 ) {
+      this.setState({
+        notFound: true,
+        message: responseData.message
+      });
+    }
     this.setState({
       activityData: responseData.body
     });
@@ -47,13 +56,19 @@ class GuaGuaLe extends Component {
   render() {
     return (
       <div>
-        <Title data={this.state.activityData}/>
-        <ScratchArea data={this.state.activityData} remoteApiUrl={remoteApiUrl} url={"/draw_award.wn"} {...this.props}/>
-        <div className={s.prizeWrap}>
-          <PrizeInfo data={this.state.activityData}/>
-          <UserPrize/>
-          <ActivityRule/>
+      {
+        this.state.notFound ?
+        <div style={{textAlign: 'center'}}> { this.state.message } </div> :
+        <div>
+          <Title data={this.state.activityData}/>
+          <ScratchArea data={this.state.activityData} remoteApiUrl={remoteApiUrl} url={"/draw_award.wn"} isLogin={this.state.isLogin} activityId={this.state.activityId}/>
+          <div className={s.prizeWrap}>
+            <PrizeInfo data={this.state.activityData}/>
+            <UserPrize data={this.state.activityData}/>
+            <ActivityRule data={this.state.activityData}/>
+          </div>
         </div>
+      }
       </div>
     );
   }

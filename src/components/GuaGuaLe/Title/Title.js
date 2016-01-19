@@ -40,6 +40,9 @@ class Title extends Component {
       let remainSeconds = Math.floor(remainS3/(1000));
       if(remainSeconds.toString().length<2) remainSeconds = '0' + remainSeconds;
 
+      // 如果取不id活动，则return
+      if ( !this.props.data ) return;
+
       this.setState({
         days: remainDays,
         hours: remainHours,
@@ -59,7 +62,7 @@ class Title extends Component {
   render() {
     return (
       <div className={s.tit}>
-       <img src={this.props.data.img_title ? this.props.data.img_title : "/gua/title.png"} alt="积分刮刮乐" className={s.tit_pic}/>
+       <img src={!this.props.data.img_title ? this.props.data.img_title : "/gua/title.png"} alt="积分刮刮乐" className={s.tit_pic}/>
        <div className={s.countdown}>
          <span>刮奖活动倒计时</span>
          <p>{this.state.days}</p>
