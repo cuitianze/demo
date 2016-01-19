@@ -57,7 +57,7 @@ class ScratchArea extends Component {
 
   // 获取用户该次抽奖消耗积分
   async getConsumPoint() {
-    const response = await fetch( this.props.remoteApiUrl + '/consum_point_action.wn' + '?param=' + JSON.stringify({id: this.props.activityId}), {
+    const response = await fetch( this.props.remoteApiUrl + '/consum_point.wn' + '?param=' + JSON.stringify({id: this.props.activityId}), {
       headers: {
         'token': 'iwTOX7V4qJbScvciDlBIpj+0eIhvGb+VlXCXoQHFhsktdM1OPwYCam+ttS5J/8+3'
       }
