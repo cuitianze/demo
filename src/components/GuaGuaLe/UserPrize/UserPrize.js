@@ -29,7 +29,7 @@ class UserPrize extends Component {
     }, 100);
     setInterval( ()=> {
       console.log(num);
-      if(num >= this.props.data.winResponseList.length) {
+      if(num >= this.props.data.winResponseList && this.props.data.winResponseList.length) {
         num = 0;
       }
       this.getPrizeInfos(num);
