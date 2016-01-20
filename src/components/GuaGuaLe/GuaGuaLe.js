@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom';
 import s from './GuaGuaLe.scss';
 import withStyles from '../../decorators/withStyles';
 
+import Loading from './Loading';
 // 抽奖活动头部标题
 import Title from './Title';
 // 刮奖区域
@@ -60,12 +61,14 @@ class GuaGuaLe extends Component {
 
   render() {
     return (
-      <div style={{backgroundColor: this.state.activityData.img_background}}>
-      <div style={!this.state.loading ? {display: 'none'} : {position: 'fixed', zIndex: 999, top: 0, left: 0, right: 0, bottom: 0, paddingTop: '40%', textAlign: 'center', background: 'white'}}><img src="/gua/loading.jpg"/></div>
+      <div>
+        <div className={!this.state.loading ? s.hidden : ''}>
+          <Loading/>
+        </div>
       {
         this.state.notFound ?
         <div style={{textAlign: 'center'}}> { this.state.message } </div> :
-        <div>
+        <div style={{backgroundColor: this.state.activityData.img_background}}>
           <Title data={this.state.activityData}/>
           <ScratchArea data={this.state.activityData} remoteApiUrl={remoteApiUrl} url={"/draw_award.wn"} userToken={this.state.userToken} activityId={this.state.activityId}/>
           <div className={s.prizeWrap}>
