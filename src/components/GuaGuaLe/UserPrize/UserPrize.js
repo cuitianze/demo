@@ -23,18 +23,19 @@ class UserPrize extends Component {
   }
 
   componentDidMount() {
-    var num = 0;
-    setTimeout( ()=> {
-      this.getPrizeInfos(num);
-    }, 100);
-    setInterval( ()=> {
-      console.log(num);
-      if(num >= this.props.data.winResponseList && this.props.data.winResponseList.length) {
-        num = 0;
-      }
-      this.getPrizeInfos(num);
-      num+=2;
-    }, 5000);
+    if (this.props.data.winResponseList ) {
+      var num = 0;
+      setTimeout( ()=> {
+        this.getPrizeInfos(num);
+      }, 100);
+      setInterval( ()=> {
+        if(num >= this.props.data.winResponseList.length) {
+          num = 0;
+        }
+        this.getPrizeInfos(num);
+        num+=2;
+      }, 5000);
+    }
   }
 
   render() {

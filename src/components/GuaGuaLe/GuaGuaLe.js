@@ -56,7 +56,7 @@ class GuaGuaLe extends Component {
   render() {
     return (
       <div>
-      <div style={this.state.activityData ? {display: 'none'} : {position: 'fixed', zIndex: 999, top: 0, left: 0, right: 0, bottom: 0, paddingTop: '40%', textAlign: 'center', background: 'white'}}><img src="/gua/loading.jpg"/></div>
+      <div style={this.state.notFound ? {display: 'none'} : {position: 'fixed', zIndex: 999, top: 0, left: 0, right: 0, bottom: 0, paddingTop: '40%', textAlign: 'center', background: 'white'}}><img src="/gua/loading.jpg"/></div>
       {
         this.state.notFound ?
         <div style={{textAlign: 'center'}}> { this.state.message } </div> :

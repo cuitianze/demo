@@ -11,12 +11,13 @@ class ActivityRule extends Component {
   }
 
   componentDidMount() {
-    setTimeout( ()=> {
-      this.setState({
-        rules: this.props.data.text_rule
-      });
-      console.log(this.state.rules)
-    }, 1000)
+    if( this.props.data.text_rule ) {
+      setTimeout( ()=> {
+        this.setState({
+          rules: this.props.data.text_rule
+        });
+      }, 1000)
+    }
   }
 
 
