@@ -23,7 +23,7 @@ class UserPrize extends Component {
   }
 
   componentDidMount() {
-    if (this.props.data.winResponseList ) {
+    // if (this.props.data.winResponseList ) {
       var num = 0;
       setTimeout( ()=> {
         this.getPrizeInfos(num);
@@ -35,7 +35,7 @@ class UserPrize extends Component {
         this.getPrizeInfos(num);
         num+=2;
       }, 5000);
-    }
+    // }
   }
 
   render() {
