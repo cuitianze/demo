@@ -79,6 +79,14 @@ class ScratchArea extends Component {
     return (
       <div className={s.luckydraw}>
         <div className={s.scratch} onTouchStart={this.scrollToTop}>
+          <div className={!this.state.scratch ? s.scratch_top : s.hidden}>
+          {
+            this.props.userToken ?
+            <button onClick={this.handleOnScratchPrize} className={s.joinBtn}>消耗300积分,参与刮奖</button> :
+            <button onClick={this.loginApp} className={s.joinBtn}>点击登陆,参与刮奖</button>
+          }
+          <div className={s.scratchTimes}><span>您已参与2次</span></div>
+          </div>
           <div className={this.state.hideCanvas ? s.hidden : s.scratchCanvas} onTouchEnd={this.scratchEnd} onMouseUp={this.scratchEnd}>
             <Canvas {...this.state}/>
           </div>
@@ -87,14 +95,6 @@ class ScratchArea extends Component {
             <div className={s.luckydraw_btn}>
               <button onClick={this.handleOnClickClear}>再刮一次</button>
             </div>
-          </div>
-          <div className={!this.state.scratch ? s.scratch_top : s.hidden}>
-            {
-              this.props.userToken ?
-              <button onClick={this.handleOnScratchPrize} className={s.joinBtn}>消耗300积分,参与刮奖</button> :
-              <button onClick={this.loginApp} className={s.joinBtn}>点击登陆,参与刮奖</button>
-            }
-            <div className={s.scratchTimes}><span>您已参与2次</span></div>
           </div>
         </div>
       </div>
