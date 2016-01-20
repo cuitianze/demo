@@ -10,8 +10,13 @@ class ScratchArea extends Component {
 
   state = {
     scratch: false,
-    hideCanvas: false
+    hideCanvas: false,
+    consumPoint: {
+      consume_point: 0,
+      frequcncy: 0
+    }
   }
+
 
   constructor(props) {
     super(props);
@@ -19,6 +24,9 @@ class ScratchArea extends Component {
     this.handleOnScratchPrize = this.handleOnScratchPrize.bind(this);
     this.loginApp = this.loginApp.bind(this);
     this.scratchEnd = this.scratchEnd.bind(this);
+    this.getConsumPoint = this.getConsumPoint.bind(this);
+    console.log(this.state);
+
   }
 
   // 简单起见，刮奖置顶
@@ -62,6 +70,10 @@ class ScratchArea extends Component {
         'token': this.props.userToken
       }
     });
+    const data = await response.json();
+    this.setState({
+      consumPoint: data.body
+    });
   }
 
   // 调用APP登陆
@@ -82,10 +94,10 @@ class ScratchArea extends Component {
           <div className={!this.state.scratch ? s.scratch_top : s.hidden}>
           {
             this.props.userToken ?
-            <button onClick={this.handleOnScratchPrize} className={s.joinBtn}>消耗300积分,参与刮奖</button> :
+            <button onClick={this.handleOnScratchPrize} className={s.joinBtn}>消耗{this.state.consumPoint && this.state.consumPoint.consume_point}积分,参与刮奖</button> :
             <button onClick={this.loginApp} className={s.joinBtn}>点击登陆,参与刮奖</button>
           }
-          <div className={s.scratchTimes}><span>您已参与2次</span></div>
+          <div className={s.scratchTimes}><span>您已参与{this.state.consumPoint.frequcncy}次</span></div>
           </div>
           <div className={this.state.hideCanvas ? s.hidden : s.scratchCanvas} onTouchEnd={this.scratchEnd} onMouseUp={this.scratchEnd}>
             <Canvas {...this.state}/>
