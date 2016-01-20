@@ -38,7 +38,7 @@ class ActivityRule extends Component {
           */}
   			</div>
   			<p>说明：</p>
-  			<p>本次活动最终解释权归北京微农网络技术有限公司所有</p>
+  			<p>{this.props.data.text_explain}</p>
   		</div>
     )
 

@@ -3,6 +3,8 @@ import ReactDOM from 'react-dom';
 import s from './GuaGuaLe.scss';
 import withStyles from '../../decorators/withStyles';
 
+// Loading
+import Loading from './Loading';
 // 抽奖活动头部标题
 import Title from './Title';
 // 刮奖区域
@@ -60,7 +62,8 @@ class GuaGuaLe extends Component {
 
   render() {
     return (
-      <div style={{backgroundColor: this.state.activityData.img_background}}>
+      <div>
+
       <div style={!this.state.loading ? {display: 'none'} : {position: 'fixed', zIndex: 999, top: 0, left: 0, right: 0, bottom: 0, paddingTop: '40%', textAlign: 'center', background: 'white'}}><img src="/gua/loading.jpg"/></div>
       {
         this.state.notFound ?
