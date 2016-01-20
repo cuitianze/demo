@@ -26,6 +26,7 @@ class GuaGuaLe extends Component {
     activityData: '',
     userToken: this.props.userToken,
     activityId: this.props.activityId,
+    loading: true,
     notFound: false
   }
 
@@ -36,15 +37,19 @@ class GuaGuaLe extends Component {
 
   // 获取活动信息
   async getAwardActivity() {
+    this.setState({
+      loading: true
+    });
     const response = await fetch( remoteApiUrl + activityApi + '?param=' + JSON.stringify({id: this.props.activityId}) );
     const responseData = await response.json();
-    if( responseData.code == 0 ) {
+    if( responseData.code != 1 ) {
       this.setState({
         notFound: true,
         message: responseData.message
       });
     }
     this.setState({
+      loading: false,
       activityData: responseData.body
     });
   }
@@ -55,8 +60,8 @@ class GuaGuaLe extends Component {
 
   render() {
     return (
-      <div>
-      <div style={this.state.notFound ? {display: 'none'} : {position: 'fixed', zIndex: 999, top: 0, left: 0, right: 0, bottom: 0, paddingTop: '40%', textAlign: 'center', background: 'white'}}><img src="/gua/loading.jpg"/></div>
+      <div style={{backgroundColor: this.state.activityData.img_background}}>
+      <div style={!this.state.loading ? {display: 'none'} : {position: 'fixed', zIndex: 999, top: 0, left: 0, right: 0, bottom: 0, paddingTop: '40%', textAlign: 'center', background: 'white'}}><img src="/gua/loading.jpg"/></div>
       {
         this.state.notFound ?
         <div style={{textAlign: 'center'}}> { this.state.message } </div> :
