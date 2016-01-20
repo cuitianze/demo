@@ -97,7 +97,7 @@ class ScratchArea extends Component {
             <button onClick={this.handleOnScratchPrize} className={s.joinBtn}>消耗{this.state.consumPoint && this.state.consumPoint.consume_point}积分,参与刮奖</button> :
             <button onClick={this.loginApp} className={s.joinBtn}>点击登陆,参与刮奖</button>
           }
-          <div className={s.scratchTimes}><span>您已参与{this.state.consumPoint.frequcncy}次</span></div>
+          <div className={s.scratchTimes}><span>您已参与{this.state.consumPoint && this.state.consumPoint.frequcncy}次</span></div>
           </div>
           <div className={this.state.hideCanvas ? s.hidden : s.scratchCanvas} onTouchEnd={this.scratchEnd} onMouseUp={this.scratchEnd}>
             <Canvas {...this.state}/>
