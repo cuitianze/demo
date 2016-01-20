@@ -69,7 +69,7 @@ class GuaGuaLe extends Component {
       {
         this.state.notFound ?
         <div style={{textAlign: 'center'}}> { this.state.message } </div> :
-        <div>
+        <div style={{backgroundColor: this.state.activityData.img_background}}>
           <Title data={this.state.activityData}/>
           <ScratchArea data={this.state.activityData} remoteApiUrl={remoteApiUrl} url={"/draw_award.wn"} userToken={this.state.userToken} activityId={this.state.activityId}/>
           <div className={s.prizeWrap}>
