@@ -43,6 +43,7 @@ class ScratchArea extends Component {
 
   // 再刮一次
   handleOnClickClear() {
+    this.getConsumPoint();
     this.setState({
       clear: true,
       scratch: false,
@@ -113,7 +114,7 @@ class ScratchArea extends Component {
           {
             this.props.userToken ?
             <button onClick={this.handleOnScratchPrize} className={s.joinBtn}>消耗{this.state.consumPoint && this.state.consumPoint.consume_point}积分,参与刮奖</button> :
-            <button onClick={this.loginApp} className={s.joinBtn}>点击登陆,参与刮奖</button>
+            <button onClick={this.loginApp} className={s.joinBtn}>点击登录,参与刮奖</button>
           }
           <div className={s.scratchTimes}><span>您已参与{this.state.consumPoint && this.state.consumPoint.frequcncy}次</span></div>
           </div>
