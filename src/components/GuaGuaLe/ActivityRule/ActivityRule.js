@@ -25,17 +25,11 @@ class ActivityRule extends Component {
 
     return (
       <div className={s.activity_rule}>
-  			<div className={s.activity_rule_title}>
+  			<div className={s.activity_rule_title} style={{backgroundImage: 'url(/gua/rule.png)'}}>
   				<p>活动规则</p>
   			</div>
   			<div className={s.activity_rule_content}>
           <span dangerouslySetInnerHTML={{__html: this.props.data.text_rule}} />
-          {/*
-  				<ul>
-  					<li>1.本次活动最终解释权归微农网络技术有限公司所有 </li>
-  					<li>2.本次活动最终解释权归微农网络技术有限公司所有 </li>
-  				</ul>
-          */}
   			</div>
   			<p>说明：</p>
   			<p>{this.props.data.text_explain}</p>

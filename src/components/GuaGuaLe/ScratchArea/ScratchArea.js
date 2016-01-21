@@ -120,7 +120,7 @@ class ScratchArea extends Component {
           {this.state.scratchFailResults}
           </div>
 
-          <div className={!this.state.scratch ? s.scratch_top : s.hidden}>
+          <div className={!this.state.scratch ? s.scratch_top : s.hidden} style={{backgroundImage: 'url(/gua/scratch-top.png)'}}>
           {
             this.props.userToken ?
             <button onClick={this.handleOnScratchPrize} className={s.joinBtn}>消耗{this.state.consumPoint && this.state.consumPoint.consume_point}积分,参与刮奖</button> :
@@ -132,7 +132,7 @@ class ScratchArea extends Component {
             <Canvas {...this.state}/>
           </div>
 
-          <div className={s.real_prize} style={this.state.hideCanvas ? {zIndex: '9'} : {zIndex: '-9'}}>
+          <div className={s.real_prize} style={this.state.hideCanvas ? {zIndex: '9', backgroundImage: 'url(/gua/scratch-bottom.png)'} : {zIndex: '-9'}}>
             {
               this.state.winData ?
             <div style={{textAlign: 'center', padding: '20px'}}>

@@ -48,7 +48,7 @@ class UserPrize extends Component {
   render() {
     return (
       <div>
-        <div className={s.user_prize_title}>
+        <div className={s.user_prize_title} style={{backgroundImage: 'url(/gua/info.png)'}}>
   				<p>中奖信息</p>
   			</div>
   			<div className={s.user_prize_content}>
