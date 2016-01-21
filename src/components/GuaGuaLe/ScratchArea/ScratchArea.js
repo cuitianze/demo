@@ -57,7 +57,7 @@ class ScratchArea extends Component {
       }
     });
     const data = await response.json();
-    if(data.code < 0) {
+    if(data.code <= 0) {
       this.setState({
         scratchFailResults: data.message
       });
