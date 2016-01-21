@@ -67,9 +67,11 @@ class ScratchArea extends Component {
         });
       }, 1000);
     } else {
+      this.scrollToTop();
       this.setState({
         scratch: true,
-        hideCanvas: false
+        hideCanvas: false,
+        winData: data.body
       })
     }
   }
@@ -101,10 +103,11 @@ class ScratchArea extends Component {
   render() {
     return (
       <div className={s.luckydraw}>
-        <div className={s.scratch} onTouchStart={this.scrollToTop}>
+        <div className={s.scratch}>
           <div className={this.state.scratchFailResults ? s.scratchFail : ''}>
           {this.state.scratchFailResults}
           </div>
+
           <div className={!this.state.scratch ? s.scratch_top : s.hidden}>
           {
             this.props.userToken ?
@@ -116,8 +119,20 @@ class ScratchArea extends Component {
           <div className={this.state.hideCanvas ? s.hidden : s.scratchCanvas} onTouchEnd={this.scratchEnd} onMouseUp={this.scratchEnd}>
             <Canvas {...this.state}/>
           </div>
+
           <div className={s.real_prize} style={this.state.hideCanvas ? {zIndex: '9'} : {zIndex: '-9'}}>
-            <p style={{textAlign: 'center'}}>奖品神马都是骗人的!</p>
+            {
+              this.state.winData ?
+            <div style={{textAlign: 'center', padding: '20px'}}>
+              <p style={{color: 'yellow', fontWeight: 'bold'}}>恭喜您刮中</p>
+              <p style={{color: '#E8E815', fontSize: '24px'}}>{this.state.winData && this.state.winData.name}</p>
+              <p style={{width: '80%', margin: '10px auto', textAlign: 'left', color: '#fff', fontSize: '16px'}}>{this.state.winData && this.state.winData.text}</p>
+            </div> :
+            <div style={{textAlign: 'center', padding: '50px'}}>
+              <p style={{color: '#E8E815', fontSize: '24px'}}>很遗憾, 未中奖</p>
+              <p style={{color: '#E8E815', fontSize: '24px'}}>再接再厉</p>
+            </div>
+            }
             <div className={s.luckydraw_btn}>
               <button onClick={this.handleOnClickClear}>再刮一次</button>
             </div>
