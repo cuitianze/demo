@@ -62,7 +62,7 @@ class GuaGuaLe extends Component {
 
   render() {
     return (
-      <div>
+      <div className={s.contentWrap}>
         <div className={!this.state.loading ? s.hidden : ''}>
           <Loading/>
         </div>

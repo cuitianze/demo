@@ -12,6 +12,10 @@
 .hidden {
   display: none;
 }
+.contentWrap {
+  width: 100%;
+  overflow-x: hidden;
+}
 .prizeWrap {
   padding: 16px 8px;
 }
