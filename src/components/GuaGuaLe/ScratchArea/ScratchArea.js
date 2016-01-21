@@ -51,16 +51,27 @@ class ScratchArea extends Component {
 
   // 点击刮奖
   async handleOnScratchPrize() {
-    this.setState({
-      scratch: true,
-      hideCanvas: false
-    })
     const response = await fetch( this.props.remoteApiUrl + this.props.url + '?param=' + JSON.stringify({id: this.props.activityId}), {
       headers: {
         'token': this.props.userToken
       }
     });
-    console.log(response)
+    const data = await response.json();
+    if(data.code < 0) {
+      this.setState({
+        scratchFailResults: data.message
+      });
+      setTimeout( ()=> {
+        this.setState({
+          scratchFailResults: false
+        });
+      }, 1000);
+    } else {
+      this.setState({
+        scratch: true,
+        hideCanvas: false
+      })
+    }
   }
 
   // 获取用户该次抽奖消耗积分
@@ -90,6 +101,9 @@ class ScratchArea extends Component {
   render() {
     return (
       <div className={s.luckydraw}>
+        <div className={this.state.scratchFailResults ? s.scratchFail : ''}>
+          {this.state.scratchFailResults}
+        </div>
         <div className={s.scratch} onTouchStart={this.scrollToTop}>
           <div className={!this.state.scratch ? s.scratch_top : s.hidden}>
           {

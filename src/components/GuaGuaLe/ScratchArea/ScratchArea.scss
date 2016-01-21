@@ -9,6 +9,20 @@
   margin-left: 5%;
   position: relative;
 }
+.scratchFail {
+  position: fixed;
+  z-index: 999;
+  top: 30%;
+  left: 50%;
+  margin-left: -100px;
+  width: 200px;
+  height: 150px;
+  line-height: 140px;
+  text-align: center;
+  color: red;
+  background: #E0D9D9;
+  border-radius: 20px;  
+}
 .scratchCanvas {
   width: 100%;
   height: 218.41755319148936px;
