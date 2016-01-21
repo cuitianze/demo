@@ -7,6 +7,7 @@ import withStyles from '../../../decorators/withStyles';
 class UserPrize extends Component {
 
   state = {
+    winResponseList: [],
     prizeInfos: []
   }
 
@@ -16,26 +17,32 @@ class UserPrize extends Component {
   }
 
   getPrizeInfos(num) {
-    if( !this.props.data ) return;
-    this.setState({
-      prizeInfos: this.props.data.winResponseList.slice(num, num+2)
-    });
+    if(this.state.winResponseList.length) {
+      this.setState({
+        prizeInfos: this.state.winResponseList.slice(num, num+2)
+      });
+    }
   }
 
   componentDidMount() {
-    // if (this.props.data.winResponseList ) {
-      var num = 0;
-      setTimeout( ()=> {
-        this.getPrizeInfos(num);
-      }, 100);
-      setInterval( ()=> {
-        if(num >= this.props.data.winResponseList && this.props.data.winResponseList.length) {
+    setTimeout( ()=> {
+      this.setState({
+        winResponseList: this.props.data.winResponseList
+      });
+    }, 1000)
+    var num = 0;
+    setTimeout( ()=> {
+      this.getPrizeInfos(num);
+    }, 1000);
+    setInterval( ()=> {
+      if(this.state.winResponseList) {
+        num+=2;
+        if(num >= this.state.winResponseList.length) {
           num = 0;
         }
         this.getPrizeInfos(num);
-        num+=2;
-      }, 5000);
-    // }
+      }
+    }, 5000);
   }
 
   render() {
