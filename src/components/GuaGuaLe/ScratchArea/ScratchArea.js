@@ -45,7 +45,8 @@ class ScratchArea extends Component {
   handleOnClickClear() {
     this.setState({
       clear: true,
-      scratch: false
+      scratch: false,
+      hideCanvas: false
     });
   }
 
