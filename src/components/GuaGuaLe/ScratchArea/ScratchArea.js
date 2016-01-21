@@ -17,7 +17,6 @@ class ScratchArea extends Component {
     }
   }
 
-
   constructor(props) {
     super(props);
     this.handleOnClickClear = this.handleOnClickClear.bind(this);
@@ -25,8 +24,6 @@ class ScratchArea extends Component {
     this.loginApp = this.loginApp.bind(this);
     this.scratchEnd = this.scratchEnd.bind(this);
     this.getConsumPoint = this.getConsumPoint.bind(this);
-    console.log(this.state);
-
   }
 
   // 简单起见，刮奖置顶
