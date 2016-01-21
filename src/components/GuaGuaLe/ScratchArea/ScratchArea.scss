@@ -10,18 +10,19 @@
   position: relative;
 }
 .scratchFail {
-  position: fixed;
+  position: absolute;
   z-index: 999;
-  top: 30%;
+  top: 50%;
   left: 50%;
   margin-left: -100px;
+  margin-top: -75px;
   width: 200px;
   height: 150px;
-  line-height: 140px;
+  line-height: 150px;
   text-align: center;
   color: red;
   background: #E0D9D9;
-  border-radius: 20px;  
+  border-radius: 20px;
 }
 .scratchCanvas {
   width: 100%;

@@ -101,10 +101,10 @@ class ScratchArea extends Component {
   render() {
     return (
       <div className={s.luckydraw}>
-        <div className={this.state.scratchFailResults ? s.scratchFail : ''}>
-          {this.state.scratchFailResults}
-        </div>
         <div className={s.scratch} onTouchStart={this.scrollToTop}>
+          <div className={this.state.scratchFailResults ? s.scratchFail : ''}>
+          {this.state.scratchFailResults}
+          </div>
           <div className={!this.state.scratch ? s.scratch_top : s.hidden}>
           {
             this.props.userToken ?
