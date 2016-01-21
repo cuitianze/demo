@@ -42,7 +42,7 @@ class UserPrize extends Component {
         }
         this.getPrizeInfos(num);
       }
-    }, 5000);
+    }, 3000);
   }
 
   render() {
