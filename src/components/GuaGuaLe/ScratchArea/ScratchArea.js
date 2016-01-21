@@ -13,7 +13,7 @@ class ScratchArea extends Component {
     hideCanvas: false,
     consumPoint: {
       consume_point: 0,
-      frequcncy: 0
+      frequency: 0
     }
   }
 
