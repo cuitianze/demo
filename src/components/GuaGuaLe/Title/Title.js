@@ -25,6 +25,9 @@ class Title extends Component {
       const endTime = this.props.data.end_time ? this.props.data.end_time : Date.now();
       // 倒计时
       const remainTime = endTime - currentTime;
+      if (remainTime < 0) {
+        return;
+      }
       // Days
       const remainDays = Math.floor(remainTime/(1000*60*60*24));
       // Hours
@@ -62,7 +65,7 @@ class Title extends Component {
   render() {
     return (
       <div className={s.tit}>
-       <img src={this.props.data.img_title ? this.props.data.img_title : "/gua/title.png"} className={s.tit_pic}/>
+       <img src={!this.props.data.img_title ? this.props.data.img_title : "/gua/title.png"} className={s.tit_pic}/>
        <div className={s.countdown}>
          <span>刮奖活动倒计时</span>
          <p>{this.state.days}</p>
