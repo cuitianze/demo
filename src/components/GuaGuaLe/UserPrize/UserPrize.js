@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import ReactDOM from 'react-dom';
 import s from './UserPrize.scss';
 import withStyles from '../../../decorators/withStyles';
 
@@ -25,24 +26,20 @@ class UserPrize extends Component {
   }
 
   componentDidMount() {
+    var prizeListsWrap = document.getElementById('prizeListsWrap');
+    var prizeLists = document.getElementById('prizeLists');
     setTimeout( ()=> {
       this.setState({
         winResponseList: this.props.data.winResponseList
       });
     }, 1000)
-    var num = 0;
-    setTimeout( ()=> {
-      this.getPrizeInfos(num);
-    }, 1000);
     setInterval( ()=> {
-      if(this.state.winResponseList) {
-        num+=2;
-        if(num >= this.state.winResponseList.length) {
-          num = 0;
-        }
-        this.getPrizeInfos(num);
+      if (prizeLists.offsetHeight - prizeListsWrap.scrollTop <= 78) {
+        prizeListsWrap.scrollTop = 0;
+      } else {
+        prizeListsWrap.scrollTop ++;
       }
-    }, 3000);
+    }, 100)
   }
 
   render() {
@@ -51,9 +48,9 @@ class UserPrize extends Component {
         <div className={s.user_prize_title} style={{backgroundImage: 'url(/gua/info.png)'}}>
   				<p>中奖信息</p>
   			</div>
-  			<div className={s.user_prize_content}>
-  				<ul>
-            {this.state.prizeInfos.map((prize, index) => {
+  			<div id="prizeListsWrap" className={s.user_prize_content} style={{height: '78px', overflow: 'hidden'}}>
+  				<ul id="prizeLists">
+            {this.state.winResponseList.map((prize, index) => {
               return (
       					<li key={prize.record_id}><span>{prize.phone}</span><span>{prize.award_name}</span></li>
               )
