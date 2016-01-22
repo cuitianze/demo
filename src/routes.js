@@ -6,6 +6,7 @@ import NotFoundPage from './components/NotFoundPage';
 import ErrorPage from './components/ErrorPage';
 // 刮刮乐
 import GuaGuaLe from './components/GuaGuaLe';
+import AcceptAward from './components/AcceptAward';
 
 const router = new Router(on => {
   on('*', async (state, next) => {
@@ -18,6 +19,11 @@ const router = new Router(on => {
     const token = state.query.token; // 客户端传回的token
     const id = state.params.id; // 抽奖活动id
     return <GuaGuaLe userToken={token} activityId={id} />
+  });
+
+  // 刮刮乐抽奖路由
+  on('/award', () => {
+    return <AcceptAward />
   });
 
   on('error', (state, error) => state.statusCode === 404 ?
