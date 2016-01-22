@@ -86,7 +86,7 @@ class ScratchArea extends Component {
     this.setState({
       consumPoint: data.body
     });
-    if(data.code != 0) {
+    if(data.code != 1) {
       this.setState({
         scratchFailResults: data.message
       });
